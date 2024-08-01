@@ -1,0 +1,4 @@
+/home/oodufowokan/repos/File-Encryption/C++/build/CMakeFiles/FileEncrypt.dir
+/home/oodufowokan/repos/File-Encryption/C++/build/CMakeFiles/main.cpp.dir
+/home/oodufowokan/repos/File-Encryption/C++/build/CMakeFiles/edit_cache.dir
+/home/oodufowokan/repos/File-Encryption/C++/build/CMakeFiles/rebuild_cache.dir
