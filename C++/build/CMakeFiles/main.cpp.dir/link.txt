@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/main.cpp.dir/Encryption.cpp.o CMakeFiles/main.cpp.dir/Uppercase.cpp.o CMakeFiles/main.cpp.dir/Copy.cpp.o -o main.cpp 
