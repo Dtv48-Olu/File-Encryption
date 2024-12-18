@@ -16,8 +16,8 @@ using namespace CryptoPP;
  }
 
 Encryption::~Encryption() {
-    // Clean up any sensitive data
-    // Securely wipe key material if needed
+    key.resize(0);  // SecByteBlock has secure cleanup
+    std::fill(iv.begin(), iv.end(), 0);  // Zero out IV        iv.clear();
 }
 
 void Encryption::generateKey() {
