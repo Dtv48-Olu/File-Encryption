@@ -13,8 +13,8 @@ Decryption::Decryption() {
 
 Decryption::~Decryption() {
     key.resize(0);  // SecByteBlock has secure cleanup
-       std::fill(iv.begin(), iv.end(), 0);  // Zero out IV
-       iv.clear();
+    std::fill(iv.begin(), iv.end(), 0);  // Zero out IV
+    iv.clear();
 }
 
 void Decryption::setKey(const byte* keyData, size_t keySize) {

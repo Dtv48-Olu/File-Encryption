@@ -4,8 +4,6 @@
 // Description: The following project purpose is demostrate a simpilistic version of file encryption and proper c++ security pratices
 
 #include <iostream>
-#include <fstream>
-#include <stdexcept>
 #include "src/include/Encryption.h"
 #include "src/include/Decryption.h"
 
