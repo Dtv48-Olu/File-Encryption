@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/oodufowokan/Code/Projects/File-Encryption/C++/src/include
 
 CXX_FLAGS = 
 

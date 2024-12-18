@@ -153,6 +153,78 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Decryption.o: src/Decryption.cpp.o
+.PHONY : src/Decryption.o
+
+# target to build an object file
+src/Decryption.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Decryption.cpp.o
+.PHONY : src/Decryption.cpp.o
+
+src/Decryption.i: src/Decryption.cpp.i
+.PHONY : src/Decryption.i
+
+# target to preprocess a source file
+src/Decryption.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Decryption.cpp.i
+.PHONY : src/Decryption.cpp.i
+
+src/Decryption.s: src/Decryption.cpp.s
+.PHONY : src/Decryption.s
+
+# target to generate assembly for a file
+src/Decryption.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Decryption.cpp.s
+.PHONY : src/Decryption.cpp.s
+
+src/Encryption.o: src/Encryption.cpp.o
+.PHONY : src/Encryption.o
+
+# target to build an object file
+src/Encryption.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Encryption.cpp.o
+.PHONY : src/Encryption.cpp.o
+
+src/Encryption.i: src/Encryption.cpp.i
+.PHONY : src/Encryption.i
+
+# target to preprocess a source file
+src/Encryption.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Encryption.cpp.i
+.PHONY : src/Encryption.cpp.i
+
+src/Encryption.s: src/Encryption.cpp.s
+.PHONY : src/Encryption.s
+
+# target to generate assembly for a file
+src/Encryption.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Encryption.cpp.s
+.PHONY : src/Encryption.cpp.s
+
+src/Utils.o: src/Utils.cpp.o
+.PHONY : src/Utils.o
+
+# target to build an object file
+src/Utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Utils.cpp.o
+.PHONY : src/Utils.cpp.o
+
+src/Utils.i: src/Utils.cpp.i
+.PHONY : src/Utils.i
+
+# target to preprocess a source file
+src/Utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Utils.cpp.i
+.PHONY : src/Utils.cpp.i
+
+src/Utils.s: src/Utils.cpp.s
+.PHONY : src/Utils.s
+
+# target to generate assembly for a file
+src/Utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/File-Encryption.dir/build.make CMakeFiles/File-Encryption.dir/src/Utils.cpp.s
+.PHONY : src/Utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +237,15 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Decryption.o"
+	@echo "... src/Decryption.i"
+	@echo "... src/Decryption.s"
+	@echo "... src/Encryption.o"
+	@echo "... src/Encryption.i"
+	@echo "... src/Encryption.s"
+	@echo "... src/Utils.o"
+	@echo "... src/Utils.i"
+	@echo "... src/Utils.s"
 .PHONY : help
 
 
