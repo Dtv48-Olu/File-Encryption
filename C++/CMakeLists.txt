@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 
 project(File-Encryption)
 
+# Find Crypto++ using pkg-config
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CRYPTOPP REQUIRED libcryptopp)  # Changed from libcrypto++ to libcryptopp
+
 # Add source files
 add_executable(File-Encryption
     main.cpp
@@ -13,13 +17,13 @@ add_executable(File-Encryption
 # Add include directory
 target_include_directories(File-Encryption PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+    ${CRYPTOPP_INCLUDE_DIRS}
 )
 
-# Find and link Crypto++
-find_package(CryptoPP REQUIRED)
+# Link libraries
 target_link_libraries(File-Encryption
-    cryptopp
-    stdc++fs  # For filesystem support
+    ${CRYPTOPP_LIBRARIES}
+    stdc++fs
 )
 
 # Set C++ standard
