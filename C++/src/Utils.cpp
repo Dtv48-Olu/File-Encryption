@@ -72,7 +72,6 @@ void Utils::readFileInChunks(
     }
 }
 
-
 void Utils::writeFileInChunks(
     const std::string& filePath,
     const std::vector<unsigned char>& data,
