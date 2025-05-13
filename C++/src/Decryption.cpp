@@ -114,6 +114,14 @@ void Decryption::removePadding(std::vector<unsigned char>& data) {
 
 void Decryption::processFile(const std::string& inputFile, const std::string& outputFile) {
     try {
+        // Load the key file
+        std::string keyFile = inputFile + ".key";
+        auto keyData = Utils::readFile(keyFile);
+        if (keyData.size() != AES::DEFAULT_KEYLENGTH) {
+            throw std::runtime_error("Invalid key file or key length");
+        }
+        setKey(keyData.data(), keyData.size());
+
         // Read encrypted file
         auto data = Utils::readFile(inputFile);
         std::cout << "File read successfully. Size: " << data.size() << " bytes\n";
@@ -132,7 +140,7 @@ void Decryption::processFile(const std::string& inputFile, const std::string& ou
 
         // Initialize decryptor with key and extracted IV
         std::cout << "Initializing decryptor...\n";
-        initDecryptor();
+        initDecryptor(iv);
 
         // Decrypt the data
         std::cout << "Decrypting data...\n";
