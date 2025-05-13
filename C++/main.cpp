@@ -6,6 +6,7 @@
 #include <iostream>
 #include "src/include/Encryption.h"
 #include "src/include/Decryption.h"
+#include "src/include/Utils.h"
 
 void displayMenu() {
     std::cout << "\nFile Encryption/Decryption Program\n"
@@ -25,14 +26,16 @@ void processEncryption() {
     std::cout << "Enter the name for the encrypted file: ";
     std::getline(std::cin, outputFile);
 
-    std::cout << "File encrypted successfully!\n";
-    std::cout << "A key file '" << outputFile << ".key' has been created. Keep this file to decrypt later.\n";
-
-
     try {
+        // Check if input file exists
+        if (!Utils::fileExists(inputFile)) {
+            throw std::runtime_error("Input file does not exist: " + inputFile);
+        }
+
         Encryption encryptor;
         encryptor.processFile(inputFile, outputFile);
         std::cout << "File encrypted successfully!\n";
+        std::cout << "A key file '" << outputFile << ".key' has been created. Keep this file to decrypt later.\n";
     }
     catch (const std::exception& e) {
         std::cerr << "Encryption failed: " << e.what() << std::endl;
@@ -44,10 +47,24 @@ void processDecryption() {
 
     std::cout << "Enter the name of the file to decrypt: ";
     std::getline(std::cin, inputFile);
+
+    std::cout << "Enter the name for the decrypted file: ";
+    std::getline(std::cin, outputFile);
+
     std::cout << "Note: Make sure the key file '" << inputFile << ".key' is in the same directory.\n";
 
-
     try {
+        // Check if input file exists
+        if (!Utils::fileExists(inputFile)) {
+            throw std::runtime_error("Input file does not exist: " + inputFile);
+        }
+
+        // Check if key file exists
+        std::string keyFile = inputFile + ".key";
+        if (!Utils::fileExists(keyFile)) {
+            throw std::runtime_error("Key file does not exist: " + keyFile);
+        }
+
         Decryption decryptor;
         decryptor.processFile(inputFile, outputFile);
         std::cout << "File decrypted successfully!\n";
