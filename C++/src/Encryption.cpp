@@ -94,6 +94,11 @@ void Encryption::processFile(const std::string& inputFile, const std::string& ou
         // Write the result to output
         Utils::writeFile(finalData, outputFile);
 
+        // Save the key to a key file (with the same name as outputFile but with .key extension)
+        std::string keyFile = outputFile + ".key";
+        std::vector<unsigned char> keyData(key.begin(), key.end());
+        Utils::writeFile(keyData, keyFile);
+
     } catch (const std::exception& e) {
         throw std::runtime_error("File processing failed: " + std::string(e.what()));
     }

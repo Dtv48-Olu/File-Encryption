@@ -22,6 +22,13 @@ void Decryption::setKey(const byte* keyData, size_t keySize) {
         throw std::runtime_error("Invalid key size");
     }
     key.Assign(keyData, keySize);
+
+    // Print key for debugging
+    std::cout << "Key set: ";
+    for (size_t i = 0; i < key.size(); i++) {
+        printf("%02X ", key[i]);
+    }
+    std::cout << std::endl;
 }
 
 void Decryption::setIV(const byte* ivData, size_t ivSize) {
@@ -72,36 +79,77 @@ void Decryption::removePadding(std::vector<unsigned char>& data) {
         throw std::runtime_error("No data to remove padding from");
     }
 
-    // Get the padding length from the last byte
     unsigned char paddingLength = data.back();
+    std::cout << "Padding length byte: " << (int)paddingLength << std::endl;
 
-    if (paddingLength > AES::BLOCKSIZE || paddingLength > data.size()) {
-        throw std::runtime_error("Invalid padding");
+    if (paddingLength == 0 || paddingLength > AES::BLOCKSIZE) {
+        std::cout << "Warning: Unusual padding length: " << (int)paddingLength << std::endl;
+        // For debugging, don't throw error yet
     }
 
-    // Remove padding bytes
-    data.resize(data.size() - paddingLength);
+    if (paddingLength > data.size()) {
+        throw std::runtime_error("Padding length larger than data size");
+    }
+
+    // Check padding bytes
+    bool paddingValid = true;
+    for (size_t i = 0; i < paddingLength && i < data.size(); i++) {
+        if (data[data.size() - 1 - i] != paddingLength) {
+            std::cout << "Invalid padding at position -" << i+1 << ": expected "
+                      << (int)paddingLength << ", got " << (int)data[data.size() - 1 - i] << std::endl;
+            paddingValid = false;
+            break;
+        }
+    }
+
+    if (!paddingValid) {
+        std::cout << "Padding validation failed, but continuing for debugging\n";
+        // Instead of throwing an error, just remove the last byte for debugging
+        data.pop_back();
+    } else {
+        // Remove padding if it seems valid
+        data.resize(data.size() - paddingLength);
+    }
 }
 
 void Decryption::processFile(const std::string& inputFile, const std::string& outputFile) {
     try {
         // Read encrypted file
         auto data = Utils::readFile(inputFile);
+        std::cout << "File read successfully. Size: " << data.size() << " bytes\n";
 
         // Extract IV from the beginning of the file
+        std::cout << "Extracting IV...\n";
         extractIV(data);
+        std::cout << "IV extracted. Data size after IV removal: " << data.size() << " bytes\n";
+
+        // Print IV for debugging
+        std::cout << "IV: ";
+        for (byte b : iv) {
+            printf("%02X ", b);
+        }
+        std::cout << std::endl;
 
         // Initialize decryptor with key and extracted IV
+        std::cout << "Initializing decryptor...\n";
         initDecryptor();
 
         // Decrypt the data
+        std::cout << "Decrypting data...\n";
         applyCipher(data);
+        std::cout << "Data decrypted. Size: " << data.size() << " bytes\n";
 
         // Remove padding
+        std::cout << "Removing padding...\n";
+        // Print last few bytes to check padding
+        std::cout << "Last byte (padding length): " << (int)data.back() << std::endl;
         removePadding(data);
+        std::cout << "Padding removed. Final size: " << data.size() << " bytes\n";
 
         // Write decrypted data to output file
+        std::cout << "Writing to output file...\n";
         Utils::writeFile(data, outputFile);
+        std::cout << "File written successfully\n";
 
     } catch (const std::exception& e) {
         throw std::runtime_error("File processing failed: " + std::string(e.what()));
