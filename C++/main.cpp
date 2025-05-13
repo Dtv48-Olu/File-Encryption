@@ -25,6 +25,10 @@ void processEncryption() {
     std::cout << "Enter the name for the encrypted file: ";
     std::getline(std::cin, outputFile);
 
+    std::cout << "File encrypted successfully!\n";
+    std::cout << "A key file '" << outputFile << ".key' has been created. Keep this file to decrypt later.\n";
+
+
     try {
         Encryption encryptor;
         encryptor.processFile(inputFile, outputFile);
@@ -40,9 +44,8 @@ void processDecryption() {
 
     std::cout << "Enter the name of the file to decrypt: ";
     std::getline(std::cin, inputFile);
+    std::cout << "Note: Make sure the key file '" << inputFile << ".key' is in the same directory.\n";
 
-    std::cout << "Enter the name for the decrypted file: ";
-    std::getline(std::cin, outputFile);
 
     try {
         Decryption decryptor;
