@@ -1,3 +1,4 @@
+#include <iostream>
 #include "include/Decryption.h"
 #include "include/Utils.h"
 #include <cryptopp/filters.h>
@@ -140,7 +141,7 @@ void Decryption::processFile(const std::string& inputFile, const std::string& ou
 
         // Initialize decryptor with key and extracted IV
         std::cout << "Initializing decryptor...\n";
-        initDecryptor(iv);
+        initDecryptor();
 
         // Decrypt the data
         std::cout << "Decrypting data...\n";
